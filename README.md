@@ -31,7 +31,7 @@ Nach diesem Durchlauf beendet sie sich - fertig.
     - Zookeeper - wird intern von Kafka benötigt
     - Kafka
     - Kafka-UI - eine Web-UI, um Kafka zu verwalten
-3. Öffne die Kafka-UI (localhost:8080) im Browser
+3. Öffne die Kafka-UI http://localhost:8080/ im Browser
   - erstelle ein neues Topic mit dem Namen "test-topic"
   - weise dem Topic die gewünschte Anzahl von Partitionen zu (1 macht in diesem Mini-Setup Sinn)
   - stelle sicher, dass du das Topic über die Kafka-UI gespeichert hast und dass es in der Liste der Topics angezeigt wird
