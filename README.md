@@ -2,17 +2,10 @@
 Dieses Projekt dient zum Testen einer Kafka-Anbindung.
 Für die Integration im Projekt wird die Bibliothek `org.apache.kafka.kafka-clients` verwendet.
 
-## Was brauch man zum starten?
-  - Docker
-    - unter /etc/docker liegt ein docker-compose.yml (v2) das die nötigen Container startet.
-  - Java 8
-  - Maven
-  - Webbrowser für die Kafka-UI
-
-## Voraussetzungen
+## Kurzbeschreibung
 Das Projekt besteht aus 2 Anwendungen (mit jeweils einer eigenen Main-Methode).
-  - KafkaProducerApp.java
-  - KafkaConsumerApp.java
+- KafkaProducerApp.java
+- KafkaConsumerApp.java
 
 Die KafkaProducerApp sendet n-mal die gleiche Testnachricht an ein Kafka-Topic (test-topic).
 Nach diesem Durchlauf beendet sie sich - fertig.
@@ -21,6 +14,13 @@ Die KafkaConsumerApp pollt auf dem Topic (test-topic) nach neuen Nachrichten.
 Die Nachrichten werden ausgelesen und als Datei in das Verzeichnis /target/out geschrieben.
 Insgesamt pollt die Anwendung 10 mal nach neuen Nachrichten.
 Nach diesem Durchlauf beendet sie sich - fertig.
+
+## Voraussetzungen
+  - Docker
+    - unter /etc/docker liegt ein docker-compose.yml (v2) das die nötigen Container startet.
+  - Java 8
+  - Maven
+  - Webbrowser für die Kafka-UI
 
 ## Getting started
 1. baue das Projekt mit Maven
@@ -45,4 +45,3 @@ Nach diesem Durchlauf beendet sie sich - fertig.
   - Kontrolliere das Ausgabeverzeichnis /target/out
   - Die Nachrichten sollten alle konsumiert und in das Ausgangsverzeichnis geschrieben worden sein
 6. Um die Docker-Container wieder zu entfernen führe aus dem Verzeichnis /etc/docker das Command: `docker compose down` aus.
-
