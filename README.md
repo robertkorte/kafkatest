@@ -4,13 +4,13 @@ Für die Integration im Projekt wird die Bibliothek `org.apache.kafka.kafka-clie
 
 ## Kurzbeschreibung
 Das Projekt besteht aus 2 Anwendungen (mit jeweils einer eigenen Main-Methode).
-- KafkaProducerApp.java
-- KafkaConsumerApp.java
+- KafkaProducerApp.java - _sendet Testnachrichten an Kafka_
+- KafkaConsumerApp.java - _konsumiert Testnachrichten von Kafka_
 
-Die KafkaProducerApp sendet n-mal die gleiche Testnachricht an ein Kafka-Topic (test-topic).
+Die KafkaProducerApp sendet n-mal die gleiche Testnachricht an ein Kafka-Topic _(test-topic)_.
 Nach diesem Durchlauf beendet sie sich - fertig.
 
-Die KafkaConsumerApp pollt auf dem Topic (test-topic) nach neuen Nachrichten.
+Die KafkaConsumerApp pollt auf dem Topic _(test-topic)_ nach neuen Nachrichten.
 Die Nachrichten werden ausgelesen und als Datei in das Verzeichnis `/target/out` geschrieben.
 Insgesamt pollt die Anwendung 10 mal nach neuen Nachrichten.
 Nach diesem Durchlauf beendet sie sich - fertig.
