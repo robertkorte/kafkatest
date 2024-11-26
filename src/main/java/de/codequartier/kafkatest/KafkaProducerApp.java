@@ -2,6 +2,8 @@ package de.codequartier.kafkatest;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +14,8 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 public class KafkaProducerApp {
+
+    private static final Logger LOG = LoggerFactory.getLogger(KafkaProducerApp.class);
 
     // The Kafka Topic to send messages to
     private static final String TOPIC = "test-topic";
@@ -37,13 +41,13 @@ public class KafkaProducerApp {
     }
 
     private void publishMessage(String message) {
-        System.out.println("---------- START PUBLISH ----------");
-        System.out.printf("About to send message%n%s%nto kafka topic [%s]%n", message, TOPIC);
+        LOG.info("---------- START PUBLISH ----------");
+        LOG.info(String.format("About to send message%n%s%nto kafka topic [%s]", message, TOPIC));
 
         producer.send(new ProducerRecord<>(TOPIC, "key1", message));
 
-        System.out.printf("Message sent to topic: [%s]%n", TOPIC);
-        System.out.println("---------- END PUBLISH -------------");
+        LOG.info(String.format("Message sent to topic: [%s]", TOPIC));
+        LOG.info("---------- END PUBLISH -------------");
     }
 
     private void closeProducer() {

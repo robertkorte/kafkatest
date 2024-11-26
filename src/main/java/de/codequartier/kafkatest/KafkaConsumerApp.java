@@ -1,8 +1,10 @@
 package de.codequartier.kafkatest;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,6 +15,8 @@ import java.util.Properties;
 import java.util.UUID;
 
 public class KafkaConsumerApp {
+
+    private static final Logger LOG = LoggerFactory.getLogger(KafkaConsumerApp.class);
 
     // The Kafka Topic to subscribe to and poll for new messages
     private static final String TOPIC = "test-topic";
@@ -29,7 +33,7 @@ public class KafkaConsumerApp {
         try {
             app.poll();
         } catch (Exception e) {
-            System.err.println("Exception: " + e.getMessage());
+            LOG.error("Failed to process messages.", e);
         } finally {
             app.closeConsumer();
         }
@@ -46,32 +50,32 @@ public class KafkaConsumerApp {
 
     private void subscribe() {
         this.consumer.subscribe(Collections.singletonList(TOPIC));
-        System.out.println("Listening to messages on topic: " + TOPIC);
+        LOG.info("Listening to messages on topic: {}", TOPIC);
     }
 
     private void poll() throws IOException {
         int count = 0;
         while (count < MAX_POLL_CYCLES) {
             count++;
-            System.out.printf("--> Poll cycle %d of %d%n", count, MAX_POLL_CYCLES );
+            LOG.info(String.format("--> Poll cycle %d of %d", count, MAX_POLL_CYCLES));
             final ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
             for (ConsumerRecord<String, String> record : records) {
                 final String key = record.key();
                 final String message = record.value();
-                System.out.printf("--> Consumed message: key = %s, message = %s%n", key, message);
+                LOG.info(String.format("--> Consumed message: key = %s, message = %s", key, message));
 
                 // create target output dir if not exists
                 File outDir = new File("target", "out");
                 if (!outDir.exists()) {
                     boolean created = outDir.mkdir();
                     if (created) {
-                      System.out.println("Output directory created: " + outDir.getAbsolutePath());
+                        LOG.info(String.format("Output directory created: " + outDir.getAbsolutePath()));
                     } else {
                         throw new IOException("Could not create output directory: " + outDir.getAbsolutePath());
                     }
                 }
 
-                try (final FileOutputStream outputStream = new FileOutputStream(new File(outDir, UUID.randomUUID() + ".xml"));) {
+                try (final FileOutputStream outputStream = new FileOutputStream(new File(outDir, UUID.randomUUID() + ".xml"))) {
                     byte[] strToBytes = message.getBytes();
                     outputStream.write(strToBytes);
                 }
