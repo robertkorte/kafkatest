@@ -1,4 +1,4 @@
-package de.dbh.kafkatest;
+package de.codequartier.kafkatest;
 
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
