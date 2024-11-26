@@ -11,7 +11,7 @@ Die KafkaProducerApp sendet n-mal die gleiche Testnachricht an ein Kafka-Topic (
 Nach diesem Durchlauf beendet sie sich - fertig.
 
 Die KafkaConsumerApp pollt auf dem Topic (test-topic) nach neuen Nachrichten.
-Die Nachrichten werden ausgelesen und als Datei in das Verzeichnis /target/out geschrieben.
+Die Nachrichten werden ausgelesen und als Datei in das Verzeichnis `/target/out` geschrieben.
 Insgesamt pollt die Anwendung 10 mal nach neuen Nachrichten.
 Nach diesem Durchlauf beendet sie sich - fertig.
 
@@ -42,6 +42,6 @@ Nach diesem Durchlauf beendet sie sich - fertig.
 5. Starte die Consumer-Anwendung (KafkaConsumer.java)
   - Dies kann man z.B. direkt in der IDE (IntelliJ) machen
   - Schau die Log-Ausgaben an
-  - Kontrolliere das Ausgabeverzeichnis /target/out
+  - Kontrolliere das Ausgabeverzeichnis `/target/out`
   - Die Nachrichten sollten alle konsumiert und in das Ausgangsverzeichnis geschrieben worden sein
 6. Um die Docker-Container wieder zu entfernen führe aus dem Verzeichnis /etc/docker das Command: `docker compose down` aus.
