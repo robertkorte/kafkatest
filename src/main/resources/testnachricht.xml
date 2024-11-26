@@ -1,0 +1,12 @@
+<root>
+    <meta>
+        <id>KAFKA_TEST_MESSAGE</id>
+        <type>KAFKA_TEST_MESSAGE</type>
+        <sender>KAFKA_TEST_MESSAGE</sender>
+    </meta>
+    <data>
+        <apkAnmeldung>
+            <content>Eine kleine Testnachricht!</content>
+        </apkAnmeldung>
+    </data>
+</root>
