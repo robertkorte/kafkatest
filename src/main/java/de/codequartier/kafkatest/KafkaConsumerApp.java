@@ -43,6 +43,10 @@ public class KafkaConsumerApp {
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092");
         props.put("group.id", "test-group");
+
+        // wichtig, damit der consumer auch die Records konsumiert, die auf Kafka gestellt wurden, bevor dieser Consumer selbst überhaupt bei Kafka registriert war.
+        props.put("auto.offset.reset", "earliest");
+
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         this.consumer = new KafkaConsumer<>(props);
@@ -73,6 +77,8 @@ public class KafkaConsumerApp {
                     } else {
                         throw new IOException("Could not create output directory: " + outDir.getAbsolutePath());
                     }
+                } else {
+                    LOG.info("Output directory already exists: {}", outDir.getAbsolutePath());
                 }
 
                 try (final FileOutputStream outputStream = new FileOutputStream(new File(outDir, UUID.randomUUID() + ".xml"))) {
